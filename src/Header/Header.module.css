@@ -1,4 +1,4 @@
-.wrapper {
+.header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -7,21 +7,17 @@
 	background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
 
-.logoWrapper {
-	display: flex;
-}
-
 .logo {
 	margin-right: 7px;
 }
 
 .title {
-	margin: 0;
+	margin-right: auto;
 	font-size: 20px;
 	font-weight: 700;
 }
 
-.subTitle {
+.projectTitle {
 	margin: 0;
 	font-size: 12px;
 	font-weight: 500;

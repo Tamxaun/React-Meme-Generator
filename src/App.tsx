@@ -1,12 +1,10 @@
-import { useEffect, useState } from 'react'
 import { Header } from "./Header";
-import reactLogo from './assets/react.svg'
-import './App.css'
+import styles from './App.module.css';
 
 function App() {
 
 	return (
-		<div className="App">
+		<div className={styles.app}>
 			<Header />
 		</div>
 	)

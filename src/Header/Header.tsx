@@ -5,12 +5,10 @@ import logo from './assets/troll-face.svg';
 
 export const Header: FC<HeaderProps> = (props) => {
 	return (
-		<header className={styles.wrapper} {...props}>
-			<div className={styles.logoWrapper}>
-				<img className={styles.logo} src={logo} alt="logo" />
-				<h1 className={styles.title}>Meme Generator</h1>
-			</div>
-			<h3 className={styles.subTitle}>React Course - Project 3</h3>
+		<header className={styles.header} {...props}>
+			<img className={styles.logo} src={logo} alt="logo" />
+			<h2 className={styles.title}>Meme Generator</h2>
+			<h4 className={styles.projectTitle}>React Course - Project 3</h4>
 		</header>
 	)
 };
