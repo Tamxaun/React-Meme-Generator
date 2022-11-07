@@ -1,36 +1,54 @@
-import { FC, MouseEvent, useState } from 'react';
+import { FC, InputHTMLAttributes, MouseEvent, useState } from 'react';
 import { MemeFormProps } from '.';
 import memeData from './memesData';
 import styles from './MemeForm.module.css';
 
 export const MemeForm: FC<MemeFormProps> = (props) => {
-	let [memeImage, setMemeImagem] = useState('');
+	let [meme, setMeme] = useState({
+		topText: '',
+		bottomText: '',
+		randomeImage: ''
+	});
 
-	function getMemeImage(event: MouseEvent<HTMLButtonElement>) {
+	function getRandomeMemeImage(event: React.MouseEvent<HTMLButtonElement>) {
 		event.preventDefault();
+
 		let randomImageUrl: string = memeData.data.memes[Math.floor(Math.random() * memeData.data.memes.length)].url;
-		setMemeImagem(randomImageUrl)
-		console.log('Button was clicked');
-		console.log(randomImageUrl);
+		setMeme(prevMeme => ({
+			...prevMeme,
+			randomeImage: randomImageUrl
+		}));
+	}
+
+	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+		const { name, value } = event.target;
+		setMeme(prevMeme => ({
+			...prevMeme,
+			[name]: value
+		}));
+		console.log(event);
+		console.log(meme);
 	}
 
 	return (
 		<main className={styles.wrap}>
 			<form className={styles.form} action="" method="post">
 				<fieldset className={styles.fieldset}>
-					<input className={styles.input} type="text" placeholder="Upper text" />
-					<input className={styles.input} type="text" placeholder='Below text' />
+					<input className={styles.input} type="text" placeholder="Upper text" name='topText' value={meme.topText} onChange={handleChange} />
+					<input className={styles.input} type="text" placeholder='Below text' name='bottomText' value={meme.bottomText} onChange={handleChange} />
 				</fieldset>
 				<p>
-					<button onClick={getMemeImage} className={styles.button} type="submit">
+					<button onClick={getRandomeMemeImage} className={styles.button} type="submit">
 						<span>Get a new meme image</span>
 						<span className={styles.buttonIcon}>🖼</span>
 					</button>
 				</p>
 			</form>
 			<div>
-				<figure className={styles.imageWrap}>
-					{memeImage.length ? <img src={memeImage} alt="meme image" /> : <figcaption>To get a meme, click the button ⇡</figcaption>}
+				<figure className={styles.memeImage}>
+					{meme.topText.length ? <h2 className={`${styles.memeText} ${styles.memeTextTop}`}>{meme.topText}</h2> : null}
+					{meme.bottomText.length ? <h2 className={`${styles.memeText} ${styles.memeTextBottom}`}>{meme.bottomText}</h2> : null}
+					{meme.randomeImage.length ? <img src={meme.randomeImage} alt="meme image" /> : <figcaption>To get a meme, click the button ⇡</figcaption>}
 				</figure>
 			</div>
 		</main>
