@@ -1,19 +1,31 @@
-import { FC, InputHTMLAttributes, MouseEvent, useState } from 'react';
+import { FC, useEffect, useState, useRef } from 'react';
 import { MemeFormProps } from '.';
 import memeData from './memesData';
 import styles from './MemeForm.module.css';
 
 export const MemeForm: FC<MemeFormProps> = (props) => {
-	let [meme, setMeme] = useState({
+	const [meme, setMeme] = useState({
 		topText: '',
 		bottomText: '',
 		randomeImage: ''
 	});
+	const [allMemes, setAllMemes] = useState([])
+	const dataFetchedRef = useRef(false);
+
+	useEffect(() => {
+		if (dataFetchedRef.current) return;
+
+		dataFetchedRef.current = true;
+
+		fetch(`https://api.imgflip.com/get_memes`)
+			.then(res => res.json())
+			.then(data => setAllMemes(data.data.memes))
+	}, []);
 
 	function getRandomeMemeImage(event: React.MouseEvent<HTMLButtonElement>) {
 		event.preventDefault();
 
-		let randomImageUrl: string = memeData.data.memes[Math.floor(Math.random() * memeData.data.memes.length)].url;
+		let randomImageUrl: string = allMemes[Math.floor(Math.random() * memeData.data.memes.length)].url;
 		setMeme(prevMeme => ({
 			...prevMeme,
 			randomeImage: randomImageUrl
@@ -22,12 +34,11 @@ export const MemeForm: FC<MemeFormProps> = (props) => {
 
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 		const { name, value } = event.target;
+
 		setMeme(prevMeme => ({
 			...prevMeme,
 			[name]: value
 		}));
-		console.log(event);
-		console.log(meme);
 	}
 
 	return (
