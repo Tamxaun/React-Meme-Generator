@@ -1,5 +1,7 @@
 .wrap {
-	margin: 36px;
+	max-width: 700px;
+	margin: auto;
+	padding: 36px;
 }
 
 .form {}
@@ -48,12 +50,15 @@
 	margin-left: 4px;
 }
 
-.memeImage {
+.memeImageWrap {
 	position: relative;
+}
+
+.memeImage {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-height: 200px;
+	min-height: 352px;
 	margin: 0;
 	padding: 0;
 	border-radius: 5px;
@@ -66,27 +71,25 @@
 	height: 100%;
 	border-radius: 5px;
 	object-fit: cover;
+	user-select: none;
+	pointer-events: none;
 }
 
 .memeImage figcaption {
 	padding: 20px;
 	line-height: 24px;
 	text-align: center;
-
+	user-select: none;
 }
 
 .memeText {
-	position: absolute;
-	width: 80%;
-	text-align: center;
-	left: 50%;
-	transform: translateX(-50%);
-	margin: 15px 0;
-	padding: 0 5px;
-	font-family: impact, sans-serif;
+	display: inline;
+	margin: 0;
 	font-size: 2em;
+	line-height: 1;
+	font-family: impact, sans-serif;
+	text-align: center;
 	text-transform: uppercase;
-	color: white;
 	letter-spacing: 1px;
 	text-shadow:
 		2px 2px 0 #000,
@@ -97,7 +100,11 @@
 		2px 0 0 #000,
 		0 -2px 0 #000,
 		-2px 0 0 #000,
-		2px 2px 5px #000;
+		2px 2px 5px hsla(0, 0%, 0%, 0.486);
+	color: white;
+	pointer-events: none;
+	user-select: none;
+	touch-action: none;
 }
 
 .memeTextTop {

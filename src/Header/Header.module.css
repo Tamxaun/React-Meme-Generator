@@ -1,10 +1,15 @@
 .header {
+	background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+}
+
+.wrap {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 20px;
+	max-width: 700px;
+	margin: auto;
+	padding: 20px 36px;
 	color: #fff;
-	background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
 }
 
 .logo {

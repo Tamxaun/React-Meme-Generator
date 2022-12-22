@@ -1,0 +1,16 @@
+.wrapper {
+	position: absolute;
+	padding: 20px;
+	transform-origin: center center;
+	pointer-events: all;
+	cursor: grab;
+	touch-action: none;
+}
+
+.wrapper:hover {
+	cursor: grab;
+}
+
+.wrapper:active {
+	cursor: grabbing;
+}
